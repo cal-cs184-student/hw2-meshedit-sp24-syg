@@ -49,7 +49,20 @@
 
         <h2 align="middle">Overview</h2>
         <p>
-            YOUR RESPONSE GOES HERE
+
+            <div>
+                In this assignment, I implemented adaptive sampling in a rendering system to improve efficiency. This involved dynamically adjusting the number of samples per pixel based on convergence rates and importance. I learned the importance of prioritizing sampling in visually significant areas and optimizing rendering processes for speed and quality.
+
+                At a high level, here's what I have built:
+
+                Rendering Pipeline: I have developed a rendering pipeline that generates images by simulating the behavior of light rays as they interact with objects in a scene.
+
+                Sampling Strategy: I implemented an adaptive sampling strategy where the number of samples taken for each pixel is dynamically adjusted based on the level of convergence of that pixel. Pixels that converge quickly require fewer samples, while pixels that converge slowly or are located in important regions of the scene receive more samples.
+
+                Convergence Criteria: I defined criteria to determine when a pixel has converged sufficiently. This could be based on factors such as the variance of pixel values across multiple samples or the rate of change in pixel values over time.
+
+                Importance Sampling: I incorporated importance sampling techniques to prioritize sampling in regions of the scene that are visually important or contribute significantly to the final image quality. This helps to allocate sampling resources more efficiently and reduce overall rendering time.
+            </div>
         </p>
         <br />
 
