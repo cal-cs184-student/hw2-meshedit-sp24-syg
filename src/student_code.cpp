@@ -96,17 +96,17 @@ namespace CGL
     // triangles, then normalizing.
     Vector3D result;
     HalfedgeCIter h = halfedge();
-    do {
+    while (h != halfedge()) {
       if (!h->face()->isBoundary())
       {
         Vector3D v0 = position;
         Vector3D v1 = h->next()->vertex()->position;
         Vector3D v2 = h->next()->next()->vertex()->position;
-        double face_area = (cross(v1 - v0, v2 - v0).norm()) / 2;
+        auto face_area = (cross(v1 - v0, v2 - v0).norm()) / 2;
         result += face_area * h->face()->normal();
       }
       h = h->twin()->next();
-    } while (h != halfedge());
+    }
     result = result.unit();
     return result;
     //return Vector3D();
@@ -149,12 +149,12 @@ namespace CGL
     FaceIter f1 = h3->face();
 
 
-    h0->setNeighbors(h1, h3, v2, e0, f1);
-    h1->setNeighbors(h2, h9, v3, e4, f1);
-    h2->setNeighbors(h0, h6, v1, e1, f1);
-    h3->setNeighbors(h4, h0, v3, e0, f2);
-    h4->setNeighbors(h5, h7, v2, e2, f2);
-    h5->setNeighbors(h3, h8, v0, e3, f2);
+    h0->setNeighbors(h1, h3, v2, e0, f0);
+    h1->setNeighbors(h2, h9, v3, e4, f0);
+    h2->setNeighbors(h0, h6, v1, e1, f0);
+    h3->setNeighbors(h4, h0, v3, e0, f1);
+    h4->setNeighbors(h5, h7, v2, e2, f1);
+    h5->setNeighbors(h3, h8, v0, e3, f1);
 
     h6->setNeighbors(h6->next(), h2, v2, e1, h6->face());
     h7->setNeighbors(h7->next(), h4, v0, e2, h7->face());
@@ -319,6 +319,7 @@ namespace CGL
 
       HalfedgeIter h = v->halfedge();
       Vector3D vector_sum;
+
       do {
         vector_sum += h->twin()->vertex()->position;
         h = h->twin()->next();
